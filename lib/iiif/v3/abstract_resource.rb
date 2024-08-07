@@ -186,10 +186,10 @@ module IIIF
             raise IIIF::V3::Presentation::IllegalValueError, m
           end
         end
-        # rendering is Array; each entry is a Hash containing 'label' and 'format' keys
+        # rendering is Array; each entry is a Hash or Resource containing 'label' and 'format' keys
         if self.has_key?('rendering') && self['rendering']
-          unless self['rendering'].all? { |entry| entry.kind_of?(Hash) }
-            m = 'rendering must be an Array with Hash members'
+          unless self['rendering'].all? { |entry| entry.kind_of?(IIIF::V3::Presentation::Resource) || entry.kind_of?(Hash) }
+            m = 'rendering must be an Array with Hash or Resource members'
             raise IIIF::V3::Presentation::IllegalValueError, m
           end
           self['rendering'].each do |entry|

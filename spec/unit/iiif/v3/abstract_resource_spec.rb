@@ -149,7 +149,7 @@ describe IIIF::V3::AbstractResource do
     describe 'rendering' do
       it 'raises IllegalValueError for entry that is not a Hash' do
         subject['rendering'] = ['error']
-        exp_err_msg = "rendering must be an Array with Hash members"
+        exp_err_msg = "rendering must be an Array with Hash or Resource members"
         expect { subject.validate }.to raise_error(IIIF::V3::Presentation::IllegalValueError, exp_err_msg)
       end
       it 'does not raise error for entry with "label" and "format"' do
